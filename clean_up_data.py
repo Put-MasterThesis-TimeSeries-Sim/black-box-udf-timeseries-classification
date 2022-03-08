@@ -2,6 +2,8 @@ import os
 import re
 import pandas as pd
 from datetime import datetime
+
+
 def calculate_sums(file_path):
     node_data_df = pd.read_csv(file_path, dtype = {'timestamp' : 'string', 'PID' : 'int', 'CPU': 'float64', 'RAM': 'float64'})
     node_data_df['timestamp'] = node_data_df['timestamp'].apply(lambda x: x if len(x.split(".")) > 1 else x + ".000000" )
@@ -13,7 +15,6 @@ def calculate_sums(file_path):
     node_data_df = node_data_df.groupby("epoch").sum()
 
     return node_data_df
-
 
 
 for root, dirs, files in os.walk(".\Raw"):
