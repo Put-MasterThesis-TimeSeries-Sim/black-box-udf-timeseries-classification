@@ -1,0 +1,122 @@
+% Szkielet dla pracy licencjackiej pisanej w języku polskim.
+
+\documentclass[polish,masters,a4paper,oneside]{ppfcmthesis}
+
+\usepackage[utf8]{inputenc}
+\usepackage[OT4]{fontenc}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{subfig}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{subfig}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{dkgreen}{rgb}{0,0.3,0}
+
+
+%--------------------------------------
+% Strona tytułowa
+%--------------------------------------
+
+% Autorzy pracy, jeśli jest ich więcej niż jeden
+% wstaw między nimi separator \and
+\author{%
+   Anna Lehnhardt \album{136275} \and 
+   Bartosz Ciesielski \album{136694}}
+\authortitle{}                                % Do not change.
+
+\title{TBD}
+
+% Your supervisor comes here.
+\ppsupervisor{dr hab. inż. Robert Wrembel, prof. nadzw.} 
+
+% Year of final submission (not graduation!)
+\ppyear{2022}                                 
+
+
+\begin{document}
+
+\lstset{
+  language=Python,
+  aboveskip=4mm,
+  belowskip=4mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  keywordstyle=\color{dkgreen},
+  commentstyle=\color{blue},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+% Front matter starts here
+\frontmatter\pagestyle{empty}%
+\maketitle\cleardoublepage%
+
+
+
+%--------------------------------------
+% Streszczenie
+\newpage\null\thispagestyle{empty}\newpage
+\newpage
+\begin{center}
+    \huge Streszczenie
+\end{center}
+
+ 
+
+\begin{center}
+    \huge Abstract
+\end{center}
+
+
+%--------------------------------------
+
+%--------------------------------------
+% Spis treści
+%--------------------------------------
+\newpage\null\thispagestyle{empty}\newpage
+\newpage
+\pagenumbering{Roman}\pagestyle{ppfcmthesis}%
+\tableofcontents* 
+\cleardoublepage % Zaczynamy od nieparzystej strony
+%--------------------------------------
+% Rozdziały
+%--------------------------------------
+
+%Najwygodniej jeśli każdy rozdział znajduje się w oddzielnym pliku
+\mainmatter%
+\input{chapters/01-wstep.tex}
+\input{chapters/02-cel-i-zakres.tex}
+\input{chapters/03-teoria.tex}
+\input{chapters/04-opis-danych}
+\input{chapters/05-architektura.tex}
+\input{chapters/06-praca-wlasna.tex}
+\input{chapters/07-wyniki.tex}
+\input{chapters/08-zakonczenie.tex}
+
+%--------------------------------------
+% Literatura
+%--------------------------------------
+
+\bibliographystyle{plain}{\raggedright\sloppy\small\bibliography{bibliografia}}
+
+%--------------------------------------
+% Dodatki
+%--------------------------------------
+\newpage\null\thispagestyle{empty}\newpage
+\cleardoublepage\appendix%
+\chapter{Repozytorium}
+%--------------------------------------
+% Informacja o prawach autorskich
+%--------------------------------------
+\newpage\null\thispagestyle{empty}\newpage
+
+\ppcolophon
+
+\end{document}

@@ -1,0 +1,36 @@
+
+\chapter{Wstęp}
+
+\subsection{Anna - zrozumienie pracy}
+The goal of the thesis is to compare couple of algorithms, that are used to analyse time series.
+Data, that will be used during experiments comes from real experiments and shows consumption of CPU and RAM during execution of specific functions. 
+\par
+The main task is to find out, which algorithms will be the most effective in determining which function was executed based on given time series. To do so, we need to take into account how the time series looks like – for example if it has a lot of outliers, or if the scale may differ a lot between measurements. That’s because there are some algorithms that are best for particular goals but no good for others. After choosing algorithm it is often needed to fit the algorithm’s
+parameters for distinct task and data.
+\par 
+The algorithms are usually based on some observations and assumptions, so probably they could be divided into groups, that were based on the same grounds, or have common origin. In this thesis differences and similarities of different algorithms for comparing time series will also be analysed.
+The general plan for working on this thesis could look like this:
+\begin{enumerate}
+\item Research of different algorithms for Time Series Analysis
+\item Choosing couple of algorithms for deeper analysis
+\item Comparing chosen algorithms in terms of common idea and origin. Getting to know chosen algorithms as best as possible
+\item Experimenting and adjusting algorithms for the task
+\item Comparing effectiveness of chosen algorithms
+\end{enumerate}
+\newpage
+\subsection{Bartosz - zrozumienie pracy}
+User-Defined Functions (UDF in short) are widely used in data processing pipelines. They are custom functions created in one of the languages that are available in the environment (for example scala or SQL). They are often seen as a ‘black box’, meaning that they can be run by supplying input parameters without the knowledge of what’s exactly happening during the processing. 
+
+The goal of this thesis is to use runtime characteristics (RAM and CPU usage) of the running UDFs and based on them classify them into groups using machine learning or statistic methods.
+Since the data is in time-series format, similarity measures for that type would be used based on available python libraries and then fed into a machine learning algorithm that can classify the UDF based on those measures.
+
+In this work, we will be checking different algorithms and comparing them with each other to find the best method for this use case.
+
+\subsection{Dotychczasowy przegląd prac naukowych WiP}
+W literaturze można znaleźć wiele prac naukowych, które badają sposoby identyfikowania aplikacji uruchamianych w środowisku superkomputerowym. Często jednak określenie typu wykonywanego programu nie jest głównych celem tych artykułów. W pracy \textit{'Using machine learning to optimize parallelism in big data applications'} autorzy próbowali poprawić estymacje planowanych zadań \cite{JobSchedulingSC}. Do identyfikacji wykorzystali metadane historyczne w celu znalezienia przeszłych uruchomień aplikacji przez danego użytkownika w ramach projektu. W zbiorze danych wykorzystywanych przez nas nie mamy takich informacji, dlatego nie możemy zastosować podobnej taktyki. 
+
+Bardziej zbliżonym artykułem była praca \textit{'A runtime estimation framework for ALICE'}, gdzie autorzy szukali metody poprawienia estymat długości czasu przetwarzania się aplikacji w systemie \cite{RuntimeEstimationALICE}. Chcieli oni znaleźć metody klasyfikacji typu aplikacji bez wykorzystywania metadanych. Zrobili to klasyfikując wpierw aplikacji na podstawie charakterystyk historycznych uruchomień. Nie były one niestety związane z zużyciem zasobów typu RAM oraz CPU. Do klasyfikacji został użyty algorytm drzew decyzyjnych. Uzyskał on wysoką (ok. 97\%) trafność co może być dla nas inspiracją przy wyborze algorytmów uczenia maszynowego.
+
+Potencjalnie interesującą pracą jest \textit{'Using machine learning to optimize parallelism in big data applications'}\cite{BigDataParallelism}, tutaj z kolei problemem był wybór parametrów dla przetwarzania przy użyciu technologii Spark. Autorzy chcieli wybrać odpowiednie ustawienie środowiska dla jak najlepszego zutylizowania zasobów korzystając z uczenia maszynowego. Spowodować by to miało przyspieszenie wykonywania się programów. Podczas analizy artykułu jednak można zauważyć, że uczenie maszynowe dotyczyło regresji, w celu przewidzenia czasu wykonywania się aplikacji przy zadanych parametrach na podstawie historycznych metryk. Jako iż w pracy mamy zamiar wykorzystać istniejące implementacje algorytmów uczenia maszynowego w języku Python, to użyteczną informacją z tego artykułu jest fakt wykorzystania biblioteki Sklearn. 
+
+
