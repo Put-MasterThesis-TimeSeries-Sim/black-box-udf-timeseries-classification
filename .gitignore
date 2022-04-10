@@ -132,3 +132,4 @@ dmypy.json
 *_smooth_*.csv
 joined_*.csv
 standardised_*.csv
+normalized_*.csv
