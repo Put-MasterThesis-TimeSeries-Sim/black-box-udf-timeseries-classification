@@ -133,3 +133,4 @@ dmypy.json
 joined_*.csv
 standardised_*.csv
 normalized_*.csv
+MachineLearning/*
