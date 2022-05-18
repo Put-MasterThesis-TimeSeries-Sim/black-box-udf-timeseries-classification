@@ -1,2 +1,77 @@
-\chapter{Budowa rozwiązania}
+\chapter{Oprogramowanie}
+% Środowisko programistyczne (python, notebooki, lokalny komputer, repozytorium)
+% Biblioteki (do algorytmów) i argumentacja która wybrana.
+\section{Środowisko programistyczne}
+    Jednym z założeń tej pracy, tj. zbadaniem podobieństwa między przebiegami czasowymi przedstawiającymi zużycie zasobów procesora oraz pamięci, jest wykorzystanie istniejących rozwiązań w języku Python. Implementacje te mają dotyczyć algorytmów wykorzystanych do badania podobieństwa szeregów czasowych oraz do uczenia maszynowego dla tego typu danych. W projekcie wykorzystywany jest Python w wersji 3.9.x, na której działają wszystkie wykorzystywane biblioteki. Dodatkowo do kontroli wersji i ułatwienia kolaboracji w projekcie wykorzystywane jest repozytorium utworzone na stronie www.Github.com, które korzysta z technologii Git.
+    Poszczególne części kodu, w którym wykonywane jest wstępne przetwarzania danych, ich analiza oraz wszelkiego typu eksperymenty znajdują się w dedykowanych notatnikach Jupyterowych (ang. \textit{Jupyter Notebooks}). Umożliwia to powtórzenie eksperymentów przez zainteresowane osoby. Każdy z tych notatników znajduję się na repozytorium pracy magisterskiej \cite{Repozytorium} w folderze ''notebooks'' pod poniższymi nazwami:
+    \begin{itemize}
+        \item 1\_przetwarzanie danych.ipynb - Notatnik odpowiadający za wstępne przetwarzanie danych opisanych w \hyperref[chap:opisdanych]{rozdziale czwartym}. Jego uruchomienie wymaga jedynie obecności danych w folderze ''raw'', które również znajdują się na repozytorium. Wynikiem uruchomienia jest utworzenie folderów ''Prepared'' oraz ''Organized'' z danymi na poszczególnym etapie przetwarzania.
+        \item 2\_grafy.ipynb'' - Uruchomienie tego notatnika tworzy grafy wykorzystane przy tworzeniu tej pracy.
+        \item 3\_Obliczanie podobieństwa.ipynb - Skrypty, które wstępnie badają algorytmy badające podobieństwa między szeregami czasowymi, wykorzystując gotowe implementacje w jeżyku Python.
+        \item 4\_eksperymenty ML.ipynb - Notebook badający użyteczność bibliotek służączych do rozwiązywania problemu klasyfikacji z użyciem języka programowania Python. Wstępnie sprawdzone jest tam moduł \textit{SKTime} oraz \testit{TSLearn}.
+        \item TBD
+    \end{itemize}
+    
+    Obliczenia wykonywane w ramach algorytmów badanych w pracy potrafią zająć znaczący okres czasu. Jeżeli jedną z miar wpływających na wybór konkretnego podejścia czy modułu był czas wykonywania, to badany był on na lokalnych komputerach i wyniki czasowe będą relatywne w ramach jednego z komputerów wykorzystywanych podczas pisania pracy.
+    
+\section{Wykorzystane biblioteki}
+\subsection{Wybrane biblioteki implementujące algorytmy obliczające podobieństwo szeregów czasowych}
+Wykorzystane implementacje algorytmów:
+\begin{itemize}
+    \item scipy.spatial - distance.euclidean()
+    \item dtw-python - distance(), normalizeDistance()
+    \item dtaidistance - distance()
+    \item tslearn.metrics - lcss\_path()
+\end{itemize}
+\subsubsection{dtw-python}
+    https://dynamictimewarping.github.io/python/
+    \newline
+    JSS Journal of Statistical Software: August 2009, Volume 31, Issue 7 \par
+    Computing and Visualizing Dynamic Time Warping
+    Alignments in R: The dtw Package
+    \newline Parametry \begin{itemize}
+        \item \texttt{x}: szereg czasowy 1
+        \item \texttt{y}: szereg czasowy 2
+        \item {\texttt{dist\_method} : euclidean}
+        \item {\texttt{step\_pattern} : symmetric2} - Tak zwana symetryczna rekurencja pozwala nielimitowanej liczbie elementów jednego szeregu być dopasowanymi do jednego elementu drugiego szeregu i vice versa. 
+        \item {\texttt{window\_type} : None}
+        \item {\texttt{window\_args} : \{\}}
+        \item {\texttt{keep\_internals} : true}
+        \item {\texttt{distance\_only} : false}
+        \item {\texttt{open\_end} : false}
+        \item {\texttt{open\_begin} : false}
+    \end{itemize}
+    Funkcja normalizująca zależy od wartości step pattern, dla symmetric2 jest to N + M, gdzie N jest liczbą wartości pierwszego szeregu czasowego a M jest liczbą wartości drugiego szeregu czasowego, nie każdy step pattern umożliwia normalizację
+\subsubsection{dtaidistance}
+    https://dtaidistance.readthedocs.io/en/latest/usage/dtw.html
+    \newline Parametry \begin{itemize}
+        \item \texttt{s1}: szereg czasowy 1
+        \item \texttt{s2}: szereg czasowy 2
+        \item \texttt{window}: None
+        \item \texttt{max\_dist}: None
+        \item \texttt{max\_step}: None
+        \item \texttt{max\_length\_diff}: None
+        \item \texttt{penalty}: None
+        \item \texttt{psi}: None
+        \item \texttt{use\_c}: False
+        \item \texttt{use\_pruning}: False
+        \item \texttt{only\_ub}: False
+    \end{itemize}
 
+\subsubsection{tslearn.metrics lcss\_path}
+    https://tslearn.readthedocs.io/en/stable/auto\_examples/metrics/plot\_lcss.html
+    \newline Parametry \begin{itemize}
+        \item \texttt{s1}: szereg czasowy 1
+        \item \texttt{s2}: szereg czasowy 2
+        \item \texttt{eps}: 1.5 - próg maksymalnego dopasowania 
+        \item \texttt{global\_constraint}: None
+        \item \texttt{sakoe\_chiba\_radius}: None
+        \item \texttt{itakura\_max\_slope}: None
+    \end{itemize}
+    
+\subsection{Biblioteki implementujące algorytmy klasyfikujące dla szeregów czasowych}
+    \label{sec:mllibs}
+    Język programowania Python jest pełny modułów, implementujących różnorodne algorytmy, często oferujących również wygodny ekosystem dla konkretnych zastosowań. Chcieliśmy znaleźć takie biblioteki, które umożliwiły by wykorzystanie szeregów czasowych w algorytmach uczenia maszynowego. Zależało nam na stosunkowo prostym odczycie przygotowanych plików z rozszerzeniem ''csv'' (z minimalną ilością dodatkowych transformacji). Dodatkowo chcielibyśmy mieć zaimplementowane klasyfikatory, które przyjmują na wejście takie szeregi czasowe oraz są proste w obsłudze. Tak jak wspomniane jest w rozdziale \hyperref[chap:theory]{trzecim rozdziale}, istnieją algorytmy, które specjalizują się w klasyfikacji szeregów czasowych i to też jest jeden z czynników wpływający na wybór modułu. Ostatecznie zdecydowaliśmy się na sprawdzenie dwóch bibliotek, czyli TSLearn\cite{TSLearn} oraz SKTime\cite{SKTime_soft}\cite{SKTIME1}. 
+\subsubsection{TSLearn}
+\subsubsection{SKTime}
+% Transformacja danych dla wybranej biblioteki
