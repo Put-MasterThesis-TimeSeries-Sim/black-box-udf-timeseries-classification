@@ -56,4 +56,4 @@ In order to repeat experiments done in the Masters degree all of the notebooks n
 
 - 9.4_results_for_size_machine_learning_experiments.ipynb
 
-All of the results will be visible in 8.2, 9.3 and 9.4 notebooks and results csv are in *MachineLearing* directory. Additionaly some graphs are saved in Plots directory.
+All of the results will be visible in 8.2, 9.3 and 9.4 notebooks and results csvs are in *MachineLearing* directory. Additionaly some graphs are saved in Plots directory.
