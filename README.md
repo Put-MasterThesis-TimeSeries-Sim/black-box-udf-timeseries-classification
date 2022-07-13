@@ -8,19 +8,32 @@ Project containing notebooks and data used in master thesis project created as a
 
 In the repository, requirements.yml can be found in top directory. In order to prepare your envrionment first you need to install miniconda, which can be found on their [site](https://docs.conda.io/en/latest/miniconda.html).
 
-After installing conda run code shown below:
+After installing conda run code shown below in command line that is open in root directory:
 
 ```cmd
 conda env create -f requirements.yml
 ```
 
-This should install all neccesary libraries. After the installation is complete run:
+This should install all neccesary libraries. After the installation is complete, run:
 
 ```cmd
 conda activate TimeSeriesSimilarity
 ```
 
 This will activate the prepared environment.
+Afterwards when the environment is active you can check if everything is working by checking the python version:
+
+```cmd
+python --version
+```
+
+If the version is 3.9.12 that means the correct version is installed. Next to prepare the kernel for Jupyter Notebook run:
+
+```cmd
+python -m ipykernel install --user --name=TimeSeriesSimilarity
+```
+
+When that finished if You use Jupyter notebook you can start it and now in kernels TimeSeriesSimilarity kernel should be avaliable to use. When that's the case, the code is ready to be run.
 
 ## Running guide
 
